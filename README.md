@@ -11,7 +11,7 @@ Typical uses: confirm an app switch, a window-manager action, or a mode change.
 ### Prebuilt binary
 
 Download `skhd-hud-macos-universal.zip` from the
-[latest release](https://github.com/mtak/skhd-notifications/releases/latest)
+[latest release](https://github.com/mtak/skhd-hud/releases/latest)
 (universal: Apple Silicon and Intel, macOS 12+):
 
 ```sh

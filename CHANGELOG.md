@@ -20,4 +20,4 @@ All notable changes to this project are documented here. The format follows
 - GitHub Actions workflow that builds a universal (arm64 + x86_64) binary and
   publishes it as a GitHub release on version tags.
 
-[0.1.0]: https://github.com/mtak/skhd-notifications/releases/tag/v0.1.0
+[0.1.0]: https://github.com/mtak/skhd-hud/releases/tag/v0.1.0
