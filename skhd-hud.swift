@@ -3,7 +3,7 @@
 import AppKit
 import QuartzCore
 
-let version = "0.1.0"
+let version = "0.1.1"
 
 let usage = """
 usage: skhd-hud [-d seconds] [-c color] [-a app] [--] message...
@@ -67,7 +67,8 @@ func appIcon(_ name: String) -> NSImage? {
     for dir in dirs {
         let path = "\(dir)/\(name).app"
         if FileManager.default.fileExists(atPath: path) {
-            return ws.icon(forFile: path)
+            // Resolve symlinks (e.g. /Applications/Safari.app) so the icon has no alias badge.
+            return ws.icon(forFile: URL(fileURLWithPath: path).resolvingSymlinksInPath().path)
         }
     }
     return nil
