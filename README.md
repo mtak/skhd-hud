@@ -4,7 +4,7 @@ A tiny macOS heads-up display for [skhd](https://github.com/koekeishiya/skhd) ho
 It flashes a short message (optionally with an app icon) on the screen under your
 mouse cursor, then fades out. It never steals focus or intercepts clicks.
 
-![skhd-hud showing "Switched to Safari" with the Safari icon](docs/screenshot.png)
+![Demo: skhd-hud popups for Safari, Microsoft Outlook and a red "Layout: BSP"](docs/demo.gif)
 
 Typical uses: confirm an app switch, a window-manager action, or a mode change.
 
