@@ -11,7 +11,7 @@ Typical uses: confirm an app switch, a window-manager action, or a mode change.
 ### Prebuilt binary
 
 Download `skhd-hud-macos-universal.zip` from the
-[latest release](https://github.com/mtak/shkd-notifications/releases/latest)
+[latest release](https://github.com/mtak/skhd-notifications/releases/latest)
 (universal: Apple Silicon and Intel, macOS 12+):
 
 ```sh
@@ -44,6 +44,7 @@ skhd-hud [-d seconds] [-c color] [-a app] [--] message...
 | `-a`, `--app` | Show this app's icon. Accepts an app name (`Safari`) or bundle id (`com.apple.Safari`). If no message is given, the app name is used. |
 | `--` | Treat everything after as the message, even words starting with `-`. |
 | `-h`, `--help` | Show usage. |
+| `-v`, `--version` | Print version and exit. |
 
 Messages longer than 256 characters are truncated with `…`, and long text wraps.
 Invalid options exit with status 2; an app icon that can't be found prints a
@@ -71,8 +72,10 @@ isn't found.
 
 ## Releasing
 
-Push a version tag; GitHub Actions builds a universal binary and attaches it to
-a GitHub release:
+1. Bump `version` in `skhd-hud.swift` and add an entry to `CHANGELOG.md`.
+2. Commit, then push a matching version tag. GitHub Actions builds a universal
+   binary and attaches it to a GitHub release (the build fails if the tag and
+   `version` don't match):
 
 ```sh
 git tag v0.1.0

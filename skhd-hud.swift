@@ -3,6 +3,8 @@
 import AppKit
 import QuartzCore
 
+let version = "0.1.0"
+
 let usage = """
 usage: skhd-hud [-d seconds] [-c color] [-a app] [--] message...
   -d, --duration  seconds on screen (default 1.2)
@@ -10,6 +12,7 @@ usage: skhd-hud [-d seconds] [-c color] [-a app] [--] message...
                   purple, pink, gray, white, or hex like #ff8800
   -a, --app       show this app's icon (name like Safari, or a bundle id);
                   the app name is used as the message if none is given
+  -v, --version   print version and exit
 """
 
 func fail(_ msg: String) -> Never {
@@ -99,6 +102,9 @@ while i < args.count {
         appName = value(for: arg)
     case "-h", "--help":
         print(usage)
+        exit(0)
+    case "-v", "--version":
+        print("skhd-hud \(version)")
         exit(0)
     case "--":
         words += args[(i + 1)...]
