@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build universal binary
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          for arch in arm64 x86_64; do
+            swiftc -O -target "$arch-apple-macos12" skhd-hud.swift -o "build/skhd-hud-$arch"
+          done
+          lipo -create -output build/skhd-hud build/skhd-hud-arm64 build/skhd-hud-x86_64
+          codesign --force --sign - build/skhd-hud
+          lipo -info build/skhd-hud
+          ./build/skhd-hud --help
+
+      - name: Package
+        run: |
+          set -euo pipefail
+          cd build
+          zip skhd-hud-macos-universal.zip skhd-hud
+          shasum -a 256 skhd-hud-macos-universal.zip > skhd-hud-macos-universal.zip.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skhd-hud
+          path: build/skhd-hud-macos-universal.zip*
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            build/skhd-hud-macos-universal.zip \
+            build/skhd-hud-macos-universal.zip.sha256 \
+            --title "$GITHUB_REF_NAME" --generate-notes
