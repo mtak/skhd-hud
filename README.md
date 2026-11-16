@@ -15,13 +15,9 @@ Typical uses: confirm an app switch, a window-manager action, or a mode change.
 
 Install from custom Brew tap:
 
-```
 ```sh
 brew install mtak/tap/skhd-hud
 ```
-```
-```
-
 
 ### Prebuilt binary
 
