@@ -10,6 +10,19 @@ Typical uses: confirm an app switch, a window-manager action, or a mode change.
 
 ## Install
 
+
+### Brew
+
+Install from custom Brew tap:
+
+```
+```sh
+brew install mtak/tap/skhd-hud
+```
+```
+```
+
+
 ### Prebuilt binary
 
 Download `skhd-hud-macos-universal.zip` from the
